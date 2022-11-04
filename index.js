@@ -1,4 +1,4 @@
-/The Document Object Model, or DOM, is essentially the elements you write into your HTML. DOMSelectors allow you to easily access your HTML in JS.
+//The Document Object Model, or DOM, is essentially the elements you write into your HTML. DOMSelectors allow you to easily access your HTML in JS.
 
 // DOMSelectors are objects that hold access to the DOM that you can call upon easily at any point in your code.
 
@@ -25,4 +25,4 @@ function backgroundAndText(background, text) {
   document.body.style.backgroundColor = "pink";
 }
 
-backgroundAndText(DOMSelectors)
+backgroundAndText(DOMSelectors);
