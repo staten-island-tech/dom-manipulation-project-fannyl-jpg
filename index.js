@@ -21,8 +21,44 @@ console.log(DOMSelectors.nothing);
 // when you look in the console after logging DOMSelectors, you will be able to see the elements that the DOMSelector accesses.
 // if you have a DOMSelector for an element that doesn't exist, it will show up as undefined.
 
+/*Create a function that creates an object and calls the following functions
+
 function backgroundAndText(background, text) {
   document.body.style.backgroundColor = "pink";
 }
 
 backgroundAndText(DOMSelectors);
+
+/* Declare the function 'myFunc' */
+function myFunc(theObject) {
+  theObject.brand = "Toyota";
+}
+
+/*
+ * Declare variable 'mycar';
+ * create and initialize a new Object;
+ * assign reference to it to 'mycar'
+ */
+const mycar = {
+  brand: "Honda",
+  model: "Accord",
+  year: 1998,
+};
+
+/* Logs 'Honda' */
+console.log(mycar.brand);
+
+/* Pass object reference to the function */
+myFunc(mycar);
+
+/*
+ * Logs 'Toyota' as the value of the 'brand' property
+ * of the object, as changed to by the function.
+ */
+console.log(mycar.brand);
+
+function {
+  create card
+  querySelector
+  foreach
+}
