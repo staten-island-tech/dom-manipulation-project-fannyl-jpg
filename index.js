@@ -1,4 +1,4 @@
-onst DOMSelectors = {
+const DOMSelectors = {
   button: document.getElementById("btn"),
   text: document.querySelector("#text"),
   box: document.getElementById("big-black-box"),
@@ -44,3 +44,10 @@ function {
   querySelector
   foreach
 }
+
+/* step 1) get data from a user - input data*/
+var name = window.prompt("What is your name?");
+var age = window.prompt("How old are you?");
+document.write()"Hey " + name + ", How are you today. Do you like being " + age + " years old?";
+2) get an object from them
+3. push that data into the HTML
