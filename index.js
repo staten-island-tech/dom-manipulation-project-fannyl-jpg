@@ -1,12 +1,21 @@
-// ****** select items **********
+const DOMSelectors = {
+  form: document.querySelector(".grocery-form"),
+  alert: document.querySelector(".alert"),
+  grocery: document.getElementById("grocery"),
+  submitBtn: document.querySelector(".submit-btn"),
+  container: document.querySelector(".grocery-container"),
+  list: document.querySelector(".grocery-list"),
+  clearBtn: document.querySelector(".clear-btn"),
+};
 
-const form = document.querySelector(".grocery-form");
-const alert = document.querySelector(".alert");
-const grocery = document.getElementById("grocery");
-const submitBtn = document.querySelector(".submit-btn");
-const container = document.querySelector(".grocery-container");
-const list = document.querySelector(".grocery-list");
-const clearBtn = document.querySelector(".clear-btn");
+console.log(DOMSelectors.form);
+console.log(DOMSelectors.alert);
+console.log(DOMSelectors.grocery);
+console.log(DOMSelectors.submitBtn);
+console.log(DOMSelectors.container);
+console.log(DOMSelectors.list);
+console.log(DOMSelectors.clearBtn);
+
 // edit option
 let editElement;
 let editFlag = false;
@@ -215,4 +224,3 @@ function createListItem(id, value) {
 
   // append child
   list.appendChild(element);
-}
