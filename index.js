@@ -1,20 +1,13 @@
 const DOMSelectors = {
-  form: document.querySelector(".grocery-form"),
-  alert: document.querySelector(".alert"),
-  grocery: document.getElementById("grocery"),
-  submitBtn: document.querySelector(".submit-btn"),
-  container: document.querySelector(".grocery-container"),
-  list: document.querySelector(".grocery-list"),
-  clearBtn: document.querySelector(".clear-btn"),
+form: document.querySelector(".grocery-form"),
+alert: document.querySelector(".alert"),
+grocery: document.getElementById("grocery"),
+submitBtn: document.querySelector(".submit-btn"),
+container: document.querySelector(".grocery-container"),
+list: document.querySelector(".grocery-list"),
+clearBtn: document.querySelector(".clear-btn"),
 };
 
-console.log(DOMSelectors.form);
-
-// edit option
-let editElement;
-let editFlag = false;
-let editID = "";
-// ****** event listeners **********
 
 // submit form
 form.addEventListener("submit", addItem);
