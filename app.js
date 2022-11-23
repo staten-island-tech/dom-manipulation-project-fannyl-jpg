@@ -1,13 +1,13 @@
-const DOMSelectors = {
-form: document.querySelector(".grocery-form"),
-alert: document.querySelector(".alert"),
-grocery: document.getElementById("grocery"),
-submitBtn: document.querySelector(".submit-btn"),
-container: document.querySelector(".grocery-container"),
-list: document.querySelector(".grocery-list"),
-clearBtn: document.querySelector(".clear-btn"),
-};
+const form = document.querySelector(".grocery-form");
+const alert = document.querySelector(".alert");
+const grocery = document.getElementById("grocery");
+const submitBtn = document.querySelector(".submit-btn");
+const container = document.querySelector(".grocery-container");
+const list = document.querySelector(".grocery-list");
 
+let editElement;
+let editFlag = false;
+let editID = "";
 
 // submit form
 form.addEventListener("submit", addItem);

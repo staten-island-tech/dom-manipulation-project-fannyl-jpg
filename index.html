@@ -1,58 +1,52 @@
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Album Builder</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Album Builder</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-  <h1>What Are You Listening To?</h1>
-  <section class="section-center">
-    <form id="form">
-      <div class="grocery-form">
+  <body>
+    <h1>What Are You Listening To?</h1>
+    <section class="section-center">
+      <form class="grocery-form">
         <p class="alert"></p>
-        <div class="form-control">
-          <label for="text" id="grocery">Album Name</label>
-          <input type="submit" id="submit" class="submit-btn" required>
+        <h3>grocery bud</h3>
+      <form id="form">
+        <div class="form-controls">
+            <label for="title">Album Name</label>
+            <input type="text" id="grocery" class="text-box" required />
+            <button type="submit" class="submit-btn">submit</button>
+          </div>
+          <div class="form-control">
+            <label for="artist">Artist</label>
+            <input type="text" id="artist" class="text-box" required />
+            <button type="submit" class="submit-btn">submit</button>
+          </div>
+          <div class="form-control">
+            <label for="url">Enter Image URL Here</label>
+            <input type="text" id="url" class="text-box" required />
+            <button type="submit" class="submit-btn">submit</button>
+          </div>
         </div>
-        <div class="grocery-container">
-          <div class="grocery-list"></div>
-          <button class="clear-btn">clear items</button>
+        <div class="hero-form-input">
+          <input type="submit" value="Submit" class="btn" />
         </div>
-        <div class="form-control">
-          <label for="text" id="grocery">Artist</label>
-          <input type="submit" id="artist" class="submit-btn" required>
-        </div>
-        <div class="form-control">
-          <label for="text" id="grocery">Enter Image URL Here</label>
-          <input type="submit" id="url" class="submit-btn" required>
-        </div>
+      </form>
+    </section>
+    <section class="display" id="display">
+      <div class="display-card">
+          <img class="display-img" src="https://www.gannett-cdn.com/presto/2019/08/08/USAT/dc1fe9c6-d585-42c4-9c69-e31cc46e4c94-ABBEY_ROAD.JPG?auto=webp&crop=1481,834,x0,y265&format=pjpg&width=1200"/>
+          <h2 class="display-artist">Beatles</h2>
+          <h3 class="display-album">Abbey Road</h3>
+           <button class="remove btn">Remove Album</button>
       </div>
-      <div class="form-control">
-        <input type="submit" value="Submit" class="btn">
+      <div class="grocery-container">
+        <div class="grocery-list"></div>
+        <button class="clear-btn">clear items</button>
       </div>
-    </form>
-  </section>
-  <section class="display" id="display">
-    <!-- <div class="display-card">
-            <img class="display-img" src="https://www.gannett-cdn.com/presto/2019/08/08/USAT/dc1fe9c6-d585-42c4-9c69-e31cc46e4c94-ABBEY_ROAD.JPG?auto=webp&crop=1481,834,x0,y265&format=pjpg&width=1200"/>
-            <h2 class="display-artist">Beatles</h2>
-            <h3 class="display-album">Abbey Road</h3>
-             <button class="remove btn">Remove Album</button>
-        </div> -->
-  </section>
-  <section class="display" id="display">
-    <!-- <div class="display-card">
-            <img class="display-img" src="https://www.gannett-cdn.com/presto/2019/08/08/USAT/dc1fe9c6-d585-42c4-9c69-e31cc46e4c94-ABBEY_ROAD.JPG?auto=webp&crop=1481,834,x0,y265&format=pjpg&width=1200"/>
-            <h2 class="display-artist">Beatles</h2>
-            <h3 class="display-album">Abbey Road</h3>
-             <button class="remove btn">Remove Album</button>
-        </div> -->
-  </section>
-  <script src="index.js" type="module"></script>
-</body>
-
+    </section>
+    <script src="app.js" type="module"></script>
+  </body>
 </html>
