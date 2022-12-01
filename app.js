@@ -142,3 +142,8 @@ function deleteItem(e) {
 const remove = function (x, y) {
   x + y;
 };
+
+let btn = document.querySelector(".btn");
+btn.addEventListener("click", () => {
+  btn.remove();
+});
