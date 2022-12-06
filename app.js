@@ -1,149 +1,148 @@
-const form = document.querySelector(".grocery-form");
-const alert = document.querySelector(".alert");
-const grocery = document.getElementById("grocery");
-const submitBtn = document.querySelector(".submit-btn");
-const container = document.querySelector(".grocery-container");
-const list = document.querySelector(".grocery-list");
+console.log("Js file")
 
-let editElement;
-let editFlag = false;
-let editID = "";
+var cart = []
+var products = [
 
-// submit form
-form.addEventListener("submit", addItem);
-// clear list
-clearBtn.addEventListener("click", clearItems);
-// display items onload
-window.addEventListener("DOMContentLoaded", setupItems);
+]
+const addProductButton = document.querySelector('#add-product-button')
+const listProductButton = document.querySelector('#list-product-button')
+const listContainer = document.querySelector('#list-container')
+const formContainer = document.querySelector('#form-container')
+const productForm = document.querySelector('#productForm')
 
-// ****** functions **********
 
-// add item
-function addItem(e) {
-  e.preventDefault();
-  const value = grocery.value;
-  const id = new Date().getTime().toString();
+window.addEventListener('load', () => {
 
-  if (value !== "" && !editFlag) {
-    const element = document.createElement("article");
-    let attr = document.createAttribute("data-id");
-    attr.value = id;
-    element.setAttributeNode(attr);
-    element.classList.add("grocery-item");
-    element.innerHTML = `<p class="title">${value}</p>
-            <div class="btn-container">
-              <!-- edit btn -->
-              <button type="button" class="edit-btn">
-                <i class="fas fa-edit"></i>
-              </button>
-              <!-- delete btn -->
-              <button type="button" class="delete-btn">
-                <i class="fas fa-trash"></i>
-              </button>
-            </div>
-          `;
-    // add event listeners to both buttons;
-    const deleteBtn = element.querySelector(".delete-btn");
-    deleteBtn.addEventListener("click", deleteItem);
-    const editBtn = element.querySelector(".edit-btn");
-    editBtn.addEventListener("click", editItem);
+    products = getProductsFromLocalStorage()
+    cart = getCartFromLocalStorage()
 
-    // append child
-    list.appendChild(element);
-    // display alert
-    displayAlert("item added to the list", "success");
-    // show container
-    container.classList.add("show-container");
-    // set local storage
-    addToLocalStorage(id, value);
-    // set back to default
-    setBackToDefault();
-  } else if (value !== "" && editFlag) {
-    editElement.innerHTML = value;
-    displayAlert("value changed", "success");
+    renderTable()
+    updateCartItemCount()
 
-    // edit  local storage
-    editLocalStorage(editID, value);
-    setBackToDefault();
-  } else {
-    displayAlert("please enter value", "danger");
-  }
+})
+
+addProductButton.addEventListener('click', () => {
+    console.log("show add product div");
+
+    formContainer.style.display = 'block'
+    listContainer.style.display = 'none'
+})
+
+
+listProductButton.addEventListener('click', () => {
+    console.log('show list product div');
+
+    formContainer.style.display = 'none'
+    listContainer.style.display = 'block'
+})
+
+productForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+    console.log('form is submitting...');
+
+    const imageUrl = document.querySelector("#productImageUrlInput").value
+    const name = document.querySelector("#productNameInput").value
+    const description = document.querySelector("#productDescriptionInput").value
+
+    const product = {
+        id: products.length + 1, imageUrl, name, description
+    }
+
+    products.push(product)
+    console.log(products);
+
+    productForm.reset()
+    saveProductsToLocalStorage()
+    renderTable()
+})
+
+
+function updateCartItemCount() {
+    document.querySelector('#cartCount').innerHTML = cart.length
+    saveCartToLocalStorage()
 }
-// display alert
-function displayAlert(text, action) {
-  alert.textContent = text;
-  alert.classList.add(`alert-${action}`);
-  // remove alert
-  setTimeout(function () {
-    alert.textContent = "";
-    alert.classList.remove(`alert-${action}`);
-  }, 1000);
+function onAddToCartClick(product, card) {
+    cart.push(product.id)
+
+    card.querySelector('#addtocart').classList.add('hidden')
+    card.querySelector('#removeFromCart').classList.remove('hidden')
+    console.log(cart);
+
+    updateCartItemCount()
 }
 
-// clear items
-function clearItems() {
-  const items = document.querySelectorAll(".grocery-item");
-  if (items.length > 0) {
-    items.forEach(function (item) {
-      list.removeChild(item);
-    });
-  }
-  container.classList.remove("show-container");
-  displayAlert("empty list", "danger");
-  setBackToDefault();
-  localStorage.removeItem("list");
+function onRemoveFromCartClick(product, card) {
+
+    const index = cart.findIndex(item => item == product.id)
+    cart.splice(index, 1)
+
+    card.querySelector('#addtocart').classList.remove('hidden')
+    card.querySelector('#removeFromCart').classList.add('hidden')
+    console.log(cart);
+
+    updateCartItemCount()
 }
 
-// delete item
+function isInCart(productId) {
+    const index = cart.findIndex(item => item === productId)
 
-function deleteItem(e) {
-  const element = e.currentTarget.parentElement.parentElement;
-  const id = element.dataset.id;
-
-  list.removeChild(element);
-
-  if (list.children.length === 0) {
-    container.classList.remove("show-container");
-  }
-  displayAlert("item removed", "danger");
-
-  setBackToDefault();
-  // remove from local storage
-  removeFromLocalStorage(id);
-}
-function editItem(e) {
-  const element = e.currentTarget.parentElement.parentElement;
-  // set edit item
-  editElement = e.currentTarget.parentElement.previousElementSibling;
-  // set form value
-  grocery.value = editElement.innerHTML;
-  editFlag = true;
-  editID = element.dataset.id;
-  //
-  submitBtn.textContent = "edit";
+    return index > -1
 }
 
-function deleteItem(e) {
-  const element = e.currentTarget.parentElement.parentElement;
-  const id = element.dataset.id;
+function renderTable() {
+    const list = document.querySelector('#list')
 
-  list.removeChild(element);
+    list.innerHTML = ""
+    const template = document.querySelector('.template')
 
-  if (list.children.length === 0) {
-    container.classList.remove("show-container");
-  }
-  displayAlert("item removed", "danger");
+    products.forEach(product => {
+        const card = template.cloneNode(true)
+        card.style.display = 'block'
+        console.log(card);
 
-  setBackToDefault();
-  // remove from local storage
-  removeFromLocalStorage(id);
+        card.querySelector(".card-title").innerHTML = product.name
+        card.querySelector(".card-text").innerHTML = product.description
+        card.querySelector("img").src = product.imageUrl
+
+        const removeFromCart = card.querySelector('#removeFromCart')
+        const addToCart = card.querySelector('#addtocart')
+
+        addToCart.addEventListener('click', () => onAddToCartClick(product, card))
+
+        removeFromCart
+            .addEventListener('click', () => onRemoveFromCartClick(product, card))
+
+        if (isInCart(product.id)) {
+            card.querySelector('#addtocart').classList.add('hidden')
+            card.querySelector('#removeFromCart').classList.remove('hidden')
+        } else {
+            card.querySelector('#addtocart').classList.remove('hidden')
+            card.querySelector('#removeFromCart').classList.add('hidden')
+        }
+
+        list.appendChild(card)
+    })
+
 }
 
-const remove = function (x, y) {
-  x + y;
-};
 
-let btn = document.querySelector(".btn");
-btn.addEventListener("click", () => {
-  btn.remove();
-});
+function saveProductsToLocalStorage() {
+    localStorage.setItem("products", JSON.stringify(products))
+}
+
+function saveCartToLocalStorage() {
+    localStorage.setItem("cart", JSON.stringify(cart))
+}
+
+function getProductsFromLocalStorage() {
+    const products = localStorage.getItem('products')
+
+    return products ? JSON.parse(products) : []
+}
+
+function getCartFromLocalStorage() {
+    const cart = localStorage.getItem('cart')
+
+    return cart ? JSON.parse(cart) : []
+}
+
