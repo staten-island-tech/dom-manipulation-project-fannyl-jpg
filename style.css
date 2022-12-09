@@ -1,11 +1,12 @@
-#form-container {
-  display: block;
+#container-box{
+  background-color: black;
+  
+  font-size: 2vh;
+  color: cornsilk;
+  text-align: center;
+  
 }
 
-.template {
-  display: none;
-}
-
-.hidden {
-  display: none;
+.cat-poster{
+  width: 10rem;
 }
