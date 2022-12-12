@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Check console</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <div id="container-box">
-      <p id="text">We can add more text with input</p>
-      <input type="text" id="input" />
-      <button type="button" id="btn">Click Me!</button>
-    </div>
-    <div class="grocery-container">
-      <div class="grocery-list"></div>
-      <button class="clear-btn">clear items</button>
-    </div>
-    <script src="app.js"></script>
-    <!-- linking the javasript file -->
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check console</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!--  <div id="container-box">
+    <p id="text">We can add more text with input</p>
+    <input type="text" id="input" />
+ -->
+  </div>
+  <h1>What Are You Listening To?</h1>
+  <section class="form-parent">
+    <form id="form">
+      <div class="form-inputs">
+        <div class="form-input">
+          <label class="label" for="title">Album Name</label>
+          <input type="text" id="title" class="text-box" required>
+        </div>
+        <div class="form-input">
+          <label class="label" for="artist">Artist</label>
+          <input type="text" id="artist" class="text-box" required>
+        </div>
+        <div class="form-input">
+          <label class="label" for="url">Enter Image URL Here</label>
+          <input type="text" id="url" class="text-box" required>
+        </div>
+      </div>
+      <div class="hero-form-input">
+        <input type="submit" value="Submit" class="btn">
+      </div>
+    </form>
+  </section>
+  <section class="display" id="display">
+  </section>
+  <script src="app.js"></script>
+  <!-- linking the javasript file -->
+</body>
+
 </html>

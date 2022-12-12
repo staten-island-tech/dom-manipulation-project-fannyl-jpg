@@ -1,32 +1,52 @@
 const DOMSelectors = {
-  button: document.getElementById("btn"), // getElementById looks for the id that is passed through it, in this case being "btn"
-  box: document.getElementById("container-box"),
-  input: document.querySelectorAll("input"), // querySelectorAll will access multiple elements with the same class, in this case being "point"
+  title: document.querySelector("#title"),
+  artist: document.querySelector("#artist"),
+  url: document.querySelector("#url"),
+  button: document.querySelector(".btn"),
+  display: document.querySelector("#display"),
 };
 
-DOMSelectors.box.insertAdjacentHTML(
-  "beforebegin",
-  `We can add text into an HTML file by writing it in JS!`
-);
-// insertAdjacentHTML will allow you to add HTML elements into your project through the JS. The positioning of this is relative to other DOM elements, and can be positioned around them. This positioning can be done with "beforebegin", "afterbegin", "beforeend", and "afterend".
+let title = null;
+let artist = null;
+let url = null;
 
-DOMSelectors.button.addEventListener("click", function () {
-  let input = DOMSelectors.input.value; // .value lets you get the values of an element, in this case something you typed in
+DOMSelectors.button.addEventListener("click", function (e) {
+  e.preventDefault();
 
-  console.log(input);
+  title = DOMSelectors.title.value;
+  artist = DOMSelectors.artist.value;
+  img = DOMSelectors.url.value;
 
-  DOMSelectors.box.insertAdjacentHTML(
-    "beforeend",
-    `
-        <p class = 'extra-text'>${input}</p>
-    `
+  console.log(title);
+  console.log(artist);
+  console.log(img);
+
+  clearinput();
+  addcard();
+
+  document.querySelectorAll(".remove").forEach((element) =>
+    element.addEventListener("click", function (e) {
+      e.target.parentElement.remove();
+    })
   );
-  DOMSelectors.input.value = "";
-}); // this function will cause new HTML to be added when the input button is clicked.
+});
+console.log(DOMSelectors);
 
-DOMSelectors.button.insertAdjacentHTML(
-  "afterend",
-  `<p>you can have multiple HTML elements in the same DOMSelector!<p>
-  <img src="https://i.imgur.com/zQ5ds03.jpeg" class="cat-poster"></img>`
-);
-// you can put multiple HTML tags in the same DOMSelector as if you were writing out regular HTML, you're also able to assigned classes and ids that can be used for styling the elements you add through js.
+function clearinput() {
+  DOMSelectors.title.value = "";
+  DOMSelectors.artist.value = "";
+  DOMSelectors.url.value = "";
+}
+
+function addcard() {
+  DOMSelectors.display.insertAdjacentHTML(
+    "beforeend",
+
+    `<div class="display-card">
+  <p class="display-album">${title}</p>
+  <p class ="display-artist">${artist}</p>
+  <p><img class="display-img" src="${img}"></p>
+  <button class="remove btn">Remove Album</button>
+   </div>`
+  );
+}
